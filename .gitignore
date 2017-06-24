@@ -7,3 +7,7 @@
 /build
 /captures
 .externalNativeBuild
+libs/
+src/main/java/com/imeepwni/geoquiz/modelview/
+src/main/java/com/imeepwni/geoquiz/modle/
+src/main/res/drawable/
