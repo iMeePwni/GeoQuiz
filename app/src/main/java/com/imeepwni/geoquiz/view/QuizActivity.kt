@@ -2,6 +2,7 @@ package com.imeepwni.geoquiz.view
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.view.Gravity
 import android.widget.Toast
 import com.imeepwni.geoquiz.R
 import kotlinx.android.synthetic.main.activity_quiz.*
@@ -13,15 +14,17 @@ class QuizActivity : AppCompatActivity() {
         setContentView(R.layout.activity_quiz)
 
         true_button.setOnClickListener({
-            Toast.makeText(this@QuizActivity,
-                    R.string.correct_toast,
-                    Toast.LENGTH_SHORT).show()
+            showToast(R.string.correct_toast)
         })
         false_button.setOnClickListener({
-            Toast.makeText(this@QuizActivity,
-                    R.string.incorrect_toast,
-                    Toast.LENGTH_SHORT).show()
+            showToast(R.string.correct_toast)
         })
 
+    }
+
+    private fun showToast(resId: Int) {
+        val toast = Toast.makeText(this, resId, Toast.LENGTH_SHORT)
+        toast.setGravity(Gravity.TOP, 0, 0)
+        toast.show()
     }
 }
