@@ -10,11 +10,11 @@ import org.junit.Assert.*
 class QuestionRepositoryTest {
     @Test
     fun modCurrentIndex() {
-        QuestionRepository.currentIndex = 3
+        QuestionRepository.currentIndex = -1
 
         val output = QuestionRepository.modCurrentIndex()
 
-        Assert.assertEquals(3, output)
+        Assert.assertEquals(5, output)
     }
 
 }

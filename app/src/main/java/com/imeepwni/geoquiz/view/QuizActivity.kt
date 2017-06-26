@@ -27,9 +27,10 @@ class QuizActivity : AppCompatActivity() {
     }
 
     fun showResult(view: View) {
+        val myAnswer = view.id==R.id.true_button
+
         val resId =
-                if ((currentQuestion.answerTrue && view.id == R.id.true_button)
-                        || (!currentQuestion.answerTrue && view.id == R.id.false_button))
+                if ((currentQuestion.answerTrue==myAnswer))
                     R.string.correct_toast
                 else
                     R.string.incorrect_toast
