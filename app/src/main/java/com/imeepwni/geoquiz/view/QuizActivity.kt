@@ -6,7 +6,8 @@ import android.view.View
 import android.widget.Toast
 import com.imeepwni.geoquiz.R
 import com.imeepwni.geoquiz.model.data.Question
-import com.imeepwni.geoquiz.model.respository.QuestionRespository
+import com.imeepwni.geoquiz.model.respository.QuestionRepository
+import kotlinx.android.synthetic.main.activity_quiz.*
 
 class QuizActivity : AppCompatActivity() {
 
@@ -14,7 +15,7 @@ class QuizActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-        currentQuestion = QuestionRespository.currentQuestion()
+        nextQuestion(null)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,7 +26,8 @@ class QuizActivity : AppCompatActivity() {
     @Suppress("UNUSED_PARAMETER")
     fun showResult(view: View) {
         val resId =
-                if (currentQuestion.answerTrue)
+                if ((currentQuestion.answerTrue && view.id == R.id.true_button)
+                        || (!currentQuestion.answerTrue && view.id == R.id.false_button))
                     R.string.correct_toast
                 else
                     R.string.incorrect_toast
@@ -33,8 +35,8 @@ class QuizActivity : AppCompatActivity() {
     }
 
     @Suppress("UNUSED_PARAMETER")
-    fun nextQuestion(view: View) {
-        QuestionRespository.currentIndex++
-        currentQuestion = QuestionRespository.currentQuestion()
+    fun nextQuestion(view: View?) {
+        currentQuestion = QuestionRepository.nextQuestion()
+        question_text.text = getString(currentQuestion.textResId)
     }
 }

@@ -4,11 +4,11 @@ import com.imeepwni.geoquiz.R
 import com.imeepwni.geoquiz.model.data.Question
 
 /**
- * Created by guofeng on 2017/6/24.
- */
-object QuestionRespository {
+* Created by guofeng on 2017/6/24.
+*/
+object QuestionRepository {
 
-    val questions = arrayListOf (
+    val questions = arrayListOf(
             Question(R.string.question_australia, true),
             Question(R.string.question_oceans, true),
             Question(R.string.question_mideast, false),
@@ -19,5 +19,5 @@ object QuestionRespository {
 
     var currentIndex = 0
 
-    fun currentQuestion() = questions[currentIndex % questions.size]
+    fun nextQuestion() = questions[currentIndex++ % questions.size]
 }
