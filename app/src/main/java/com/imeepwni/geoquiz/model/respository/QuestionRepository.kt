@@ -5,7 +5,7 @@ import com.imeepwni.geoquiz.model.data.Question
 
 object QuestionRepository {
 
-    val questions = arrayListOf(
+    private val questions = arrayListOf(
             Question(R.string.question_australia, true),
             Question(R.string.question_oceans, true),
             Question(R.string.question_mideast, false),
@@ -16,14 +16,12 @@ object QuestionRepository {
 
     var currentIndex = 0
 
-    fun currentQuestion() = questions[currentIndex % questions.size]
+    fun currentQuestion() = questions[modCurrentIndex()]
 
-    fun nextQuestion() = questions[++currentIndex % questions.size]
-
-    fun prevQuestion(): Question {
-        if (currentIndex <= 0) {
+    fun modCurrentIndex(): Int {
+        while (currentIndex < 0) {
             currentIndex += questions.size
         }
-        return questions[--currentIndex % questions.size]
+        return currentIndex % questions.size
     }
 }

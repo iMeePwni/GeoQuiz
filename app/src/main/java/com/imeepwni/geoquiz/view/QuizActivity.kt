@@ -17,11 +17,12 @@ class QuizActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_quiz)
-        currentQuestion = QuestionRepository.currentQuestion()
+
         refreshUI()
     }
 
     fun refreshUI() {
+        currentQuestion = QuestionRepository.currentQuestion()
         question_text.text = getString(currentQuestion.textResId)
     }
 
@@ -36,12 +37,12 @@ class QuizActivity : AppCompatActivity() {
     }
 
     fun prevQuestion(view: View) {
-        currentQuestion = QuestionRepository.prevQuestion()
+        QuestionRepository.currentIndex--
         refreshUI()
     }
 
     fun nextQuestion(view: View?) {
-        currentQuestion = QuestionRepository.nextQuestion()
+        QuestionRepository.currentIndex++
         refreshUI()
     }
 }
