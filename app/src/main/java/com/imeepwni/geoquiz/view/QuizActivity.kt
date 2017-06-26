@@ -9,6 +9,7 @@ import com.imeepwni.geoquiz.model.data.Question
 import com.imeepwni.geoquiz.model.respository.QuestionRepository
 import kotlinx.android.synthetic.main.activity_quiz.*
 
+@Suppress("UNUSED_PARAMETER")
 class QuizActivity : AppCompatActivity() {
 
     lateinit var currentQuestion: Question
@@ -23,7 +24,6 @@ class QuizActivity : AppCompatActivity() {
         setContentView(R.layout.activity_quiz)
     }
 
-    @Suppress("UNUSED_PARAMETER")
     fun showResult(view: View) {
         val resId =
                 if ((currentQuestion.answerTrue && view.id == R.id.true_button)
@@ -34,7 +34,11 @@ class QuizActivity : AppCompatActivity() {
         Toast.makeText(this, resId, Toast.LENGTH_SHORT).show()
     }
 
-    @Suppress("UNUSED_PARAMETER")
+    fun prevQuestion(view: View) {
+        currentQuestion = QuestionRepository.prevQuestion()
+        question_text.text = getString(currentQuestion.textResId)
+    }
+
     fun nextQuestion(view: View?) {
         currentQuestion = QuestionRepository.nextQuestion()
         question_text.text = getString(currentQuestion.textResId)

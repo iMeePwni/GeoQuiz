@@ -17,7 +17,14 @@ object QuestionRepository {
             Question(R.string.question_asia, true)
     )
 
-    var currentIndex = 0
+    var currentIndex = -1
 
-    fun nextQuestion() = questions[currentIndex++ % questions.size]
+    fun nextQuestion() = questions[++currentIndex % questions.size]
+
+    fun prevQuestion() : Question {
+        if (currentIndex <= 0) {
+            currentIndex += questions.size
+        }
+        return questions[--currentIndex % questions.size]
+    }
 }

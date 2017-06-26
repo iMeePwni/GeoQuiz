@@ -12,6 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
+        android:onClick="nextQuestion"
         android:textStyle="normal"
         app:layout_constraintBottom_toTopOf="@+id/guideline"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -52,17 +53,30 @@
         app:layout_constraintStart_toEndOf="@+id/true_button"
         app:layout_constraintTop_toTopOf="@+id/true_button"/>
 
-    <Button
+    <ImageButton
         android:id="@+id/next_button"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="0dp"
+        android:layout_marginBottom="0dp"
+        android:contentDescription="@string/next"
+        android:onClick="nextQuestion"
+        android:src="@drawable/arrow_right"
+        app:layout_constraintBottom_toBottomOf="@+id/prev_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/prev_button"
+        app:layout_constraintTop_toTopOf="@+id/prev_button"/>
+
+    <ImageButton
+        android:id="@+id/prev_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginStart="0dp"
         android:layout_marginTop="8dp"
-        android:onClick="nextQuestion"
-        android:text="@string/next_button"
-        app:layout_constraintEnd_toEndOf="@+id/false_button"
-        app:layout_constraintStart_toStartOf="@+id/true_button"
+        android:contentDescription="@string/prev"
+        android:onClick="prevQuestion"
+        android:src="@drawable/arrow_left"
+        app:layout_constraintEnd_toStartOf="@+id/next_button"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/true_button"/>
 
 </android.support.constraint.ConstraintLayout>
