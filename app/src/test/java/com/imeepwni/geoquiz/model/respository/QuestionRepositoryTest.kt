@@ -3,14 +3,9 @@ package com.imeepwni.geoquiz.model.respository
 import org.junit.*
 
 /**
- * Created by guofeng on 2017/6/26.
+ * Create by guofeng on 2017/6/26.
  */
 class QuestionRepositoryTest {
-
-    @Test
-    fun getQuestions() {
-        Assert.assertNotNull(QuestionRepository.questions)
-    }
 
     @Test
     fun getCurrentIndex() {
@@ -24,7 +19,7 @@ class QuestionRepositoryTest {
 
         QuestionRepository.nextQuestion()
 
-        Assert.assertTrue(tempIndex % questionSize == QuestionRepository.currentIndex % questionSize - 1)
+        Assert.assertTrue(tempIndex % questionSize==QuestionRepository.currentIndex % questionSize - 1)
     }
 
     @Test
@@ -34,12 +29,12 @@ class QuestionRepositoryTest {
 
         QuestionRepository.prevQuestion()
 
-        Assert.assertTrue(tempIndex % questionSize == QuestionRepository.currentIndex % questionSize + 1)
+        Assert.assertTrue(tempIndex % questionSize==QuestionRepository.currentIndex % questionSize + 1)
     }
 
     @Test
     fun currentQuestion() {
-        Assert.assertTrue(QuestionRepository.currentIndex == 0)
+        Assert.assertTrue(QuestionRepository.currentIndex==0)
     }
 
 }
