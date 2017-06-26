@@ -37,4 +37,9 @@ class QuestionRepositoryTest {
         Assert.assertTrue(tempIndex % questionSize == QuestionRepository.currentIndex % questionSize + 1)
     }
 
+    @Test
+    fun currentQuestion() {
+        Assert.assertTrue(QuestionRepository.currentIndex == 0)
+    }
+
 }

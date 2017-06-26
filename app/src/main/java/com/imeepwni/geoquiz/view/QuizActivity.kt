@@ -14,14 +14,15 @@ class QuizActivity : AppCompatActivity() {
 
     lateinit var currentQuestion: Question
 
-    override fun onStart() {
-        super.onStart()
-        nextQuestion(null)
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_quiz)
+        currentQuestion = QuestionRepository.currentQuestion()
+        refreshUI()
+    }
+
+    fun refreshUI() {
+        question_text.text = getString(currentQuestion.textResId)
     }
 
     fun showResult(view: View) {
@@ -36,11 +37,11 @@ class QuizActivity : AppCompatActivity() {
 
     fun prevQuestion(view: View) {
         currentQuestion = QuestionRepository.prevQuestion()
-        question_text.text = getString(currentQuestion.textResId)
+        refreshUI()
     }
 
     fun nextQuestion(view: View?) {
         currentQuestion = QuestionRepository.nextQuestion()
-        question_text.text = getString(currentQuestion.textResId)
+        refreshUI()
     }
 }

@@ -3,9 +3,6 @@ package com.imeepwni.geoquiz.model.respository
 import com.imeepwni.geoquiz.R
 import com.imeepwni.geoquiz.model.data.Question
 
-/**
-* Created by guofeng on 2017/6/24.
-*/
 object QuestionRepository {
 
     val questions = arrayListOf(
@@ -17,11 +14,13 @@ object QuestionRepository {
             Question(R.string.question_asia, true)
     )
 
-    var currentIndex = -1
+    var currentIndex = 0
+
+    fun currentQuestion() = questions[currentIndex % questions.size]
 
     fun nextQuestion() = questions[++currentIndex % questions.size]
 
-    fun prevQuestion() : Question {
+    fun prevQuestion(): Question {
         if (currentIndex <= 0) {
             currentIndex += questions.size
         }
