@@ -2,8 +2,6 @@ package com.imeepwni.geoquiz.model.respository
 
 import org.junit.*
 
-import org.junit.Assert.*
-
 /**
  * Create by guofeng on 2017/6/26.
  */
@@ -15,6 +13,15 @@ class QuestionRepositoryTest {
         val output = QuestionRepository.modCurrentIndex()
 
         Assert.assertEquals(5, output)
+    }
+
+    @Test
+    fun completeQuestion() {
+        QuestionRepository.completeQuestion(true)
+        val question = QuestionRepository.currentQuestion()
+
+        Assert.assertTrue(question.isAnswered
+                && question.isAnswerRight ?: false)
     }
 
 }
