@@ -29,8 +29,12 @@ object QuestionRepository {
         val question = questions[modCurrentIndex()]
         question.run {
             isAnswered = true
-            this.isAnswerRight = isAnswered
+            this.isAnswerRight = isAnswerRight
         }
         questions[modCurrentIndex()] = question
     }
+
+    fun isCompletedAllQuestion() = questions.filter { !it.isAnswered }.isEmpty()
+
+    fun score() = (questions.filter { it.isAnswerRight ?: false }.size * 100 / questions.size).toString() + "%"
 }
