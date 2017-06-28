@@ -1,11 +1,11 @@
 package com.imeepwni.geoquiz.model.respository
 
-import com.imeepwni.geoquiz.R
-import com.imeepwni.geoquiz.model.data.Question
+import com.imeepwni.geoquiz.*
+import com.imeepwni.geoquiz.model.data.*
 
 object QuestionRepository {
 
-    private val questions = arrayListOf(
+    private val questions = mutableListOf(
             Question(R.string.question_australia, true),
             Question(R.string.question_oceans, true),
             Question(R.string.question_mideast, false),
@@ -23,5 +23,14 @@ object QuestionRepository {
             currentIndex += questions.size
         }
         return currentIndex % questions.size
+    }
+
+    fun completeQuestion(isAnswerRight: Boolean) {
+        val question = questions[modCurrentIndex()]
+        question.run {
+            isAnswered = true
+            this.isAnswerRight = isAnswered
+        }
+        questions[modCurrentIndex()] = question
     }
 }
