@@ -26,6 +26,10 @@ class QuizActivity : AppCompatActivity() {
         question_text.text = getString(currentQuestion.textResId)
         true_button.isEnabled = !currentQuestion.isAnswered
         false_button.isEnabled = !currentQuestion.isAnswered
+
+        if (QuestionRepository.isCompletedAllQuestion()) {
+            Toast.makeText(this, QuestionRepository.score(), Toast.LENGTH_SHORT).show()
+        }
     }
 
     fun showResult(view: View) {

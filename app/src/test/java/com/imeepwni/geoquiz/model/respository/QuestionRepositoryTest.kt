@@ -24,4 +24,9 @@ class QuestionRepositoryTest {
                 && question.isAnswerRight ?: false)
     }
 
+    @Test
+    fun isCompletedAllQuestion() {
+        Assert.assertTrue(!QuestionRepository.isCompletedAllQuestion())
+    }
+
 }
