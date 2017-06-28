@@ -8,11 +8,15 @@ import com.imeepwni.geoquiz.*
 import com.imeepwni.geoquiz.model.data.*
 import com.imeepwni.geoquiz.model.respository.*
 import kotlinx.android.synthetic.main.activity_quiz.*
+import kotlin.properties.*
 
 @Suppress("UNUSED_PARAMETER")
 class QuizActivity : AppCompatActivity() {
 
-    lateinit var currentQuestion: Question
+    var currentQuestion: Question by Delegates.observable(QuestionRepository.currentQuestion()) {
+        _, _, _ ->
+        refreshUI()
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,11 +26,9 @@ class QuizActivity : AppCompatActivity() {
     }
 
     fun refreshUI() {
-        currentQuestion = QuestionRepository.currentQuestion()
         question_text.text = getString(currentQuestion.textResId)
         true_button.isEnabled = !currentQuestion.isAnswered
         false_button.isEnabled = !currentQuestion.isAnswered
-
         if (QuestionRepository.isCompletedAllQuestion()) {
             Toast.makeText(this, QuestionRepository.score(), Toast.LENGTH_SHORT).show()
         }
@@ -42,11 +44,11 @@ class QuizActivity : AppCompatActivity() {
 
     fun prevQuestion(view: View) {
         QuestionRepository.currentIndex--
-        refreshUI()
+        currentQuestion = QuestionRepository.currentQuestion()
     }
 
     fun nextQuestion(view: View?) {
         QuestionRepository.currentIndex++
-        refreshUI()
+        currentQuestion = QuestionRepository.currentQuestion()
     }
 }
