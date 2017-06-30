@@ -15,6 +15,7 @@ object QuestionRepository {
     )
 
     var currentIndex = 0
+    var cheatCount = 0
 
     fun currentQuestion() = questions[modCurrentIndex()]
 
@@ -38,6 +39,7 @@ object QuestionRepository {
         val question = questions[modCurrentIndex()]
         question.isCheated = true
         questions[modCurrentIndex()] = question
+        cheatCount++
     }
 
     fun isCompletedAllQuestion() = questions.filter { !it.isAnswered }.isEmpty()

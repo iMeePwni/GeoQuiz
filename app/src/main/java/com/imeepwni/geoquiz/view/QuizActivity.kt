@@ -36,6 +36,9 @@ class QuizActivity : AppCompatActivity() {
         if (currentQuestion.isCheated) {
             Snackbar.make(container, R.string.judgment_toast, Snackbar.LENGTH_SHORT).show()
         }
+        if (QuestionRepository.cheatCount >= 3) {
+            cheat_button.isEnabled = false
+        }
         if (QuestionRepository.isCompletedAllQuestion()) {
             Snackbar.make(container, QuestionRepository.score(), Snackbar.LENGTH_SHORT).show()
         }
