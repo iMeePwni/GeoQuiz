@@ -1,9 +1,10 @@
 package com.imeepwni.geoquiz.view
 
+import android.content.*
 import android.os.*
+import android.support.design.widget.*
 import android.support.v7.app.*
 import android.view.*
-import android.widget.*
 import com.imeepwni.geoquiz.*
 import com.imeepwni.geoquiz.model.data.*
 import com.imeepwni.geoquiz.model.respository.*
@@ -21,7 +22,10 @@ class QuizActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_quiz)
+    }
 
+    override fun onResume() {
+        super.onResume()
         refreshUI()
     }
 
@@ -29,8 +33,11 @@ class QuizActivity : AppCompatActivity() {
         question_text.text = getString(currentQuestion.textResId)
         true_button.isEnabled = !currentQuestion.isAnswered
         false_button.isEnabled = !currentQuestion.isAnswered
+        if (currentQuestion.isCheated) {
+            Snackbar.make(container, R.string.judgment_toast, Snackbar.LENGTH_SHORT).show()
+        }
         if (QuestionRepository.isCompletedAllQuestion()) {
-            Toast.makeText(this, QuestionRepository.score(), Toast.LENGTH_SHORT).show()
+            Snackbar.make(container, QuestionRepository.score(), Snackbar.LENGTH_SHORT).show()
         }
     }
 
@@ -39,7 +46,7 @@ class QuizActivity : AppCompatActivity() {
         val isAnswerRight = currentQuestion.answerTrue==myAnswer
         QuestionRepository.completeQuestion(isAnswerRight)
         val resId = if (isAnswerRight) R.string.correct_toast else R.string.incorrect_toast
-        Toast.makeText(this, resId, Toast.LENGTH_SHORT).show()
+        Snackbar.make(container, resId, Snackbar.LENGTH_SHORT).show()
     }
 
     fun prevQuestion(view: View) {
@@ -47,8 +54,12 @@ class QuizActivity : AppCompatActivity() {
         currentQuestion = QuestionRepository.currentQuestion()
     }
 
-    fun nextQuestion(view: View?) {
+    fun nextQuestion(view: View) {
         QuestionRepository.currentIndex++
         currentQuestion = QuestionRepository.currentQuestion()
+    }
+
+    fun startCheatActivity(view: View) {
+        startActivity(Intent(this, CheatActivity::class.java))
     }
 }
