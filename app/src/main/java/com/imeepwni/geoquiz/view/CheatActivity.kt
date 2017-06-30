@@ -24,6 +24,8 @@ class CheatActivity : AppCompatActivity() {
             answer_text_view.text = savedInstanceState.getString("text", "")
             show_answer_button.visibility = savedInstanceState.getInt("button", View.VISIBLE)
         }
+
+        api_level_text_view.text = Build.VERSION.SDK_INT.toString()
     }
 
     override fun onSaveInstanceState(outState: Bundle?) {
