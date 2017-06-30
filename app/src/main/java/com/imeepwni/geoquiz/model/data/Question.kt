@@ -4,5 +4,6 @@ data class Question(
         var textResId: Int,
         var answerTrue: Boolean,
         var isAnswered: Boolean = false,
-        var isAnswerRight: Boolean? = null
+        var isAnswerRight: Boolean? = null,
+        var isCheated: Boolean = false
 )

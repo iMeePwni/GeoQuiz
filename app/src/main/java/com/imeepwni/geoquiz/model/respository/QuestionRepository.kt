@@ -34,6 +34,12 @@ object QuestionRepository {
         questions[modCurrentIndex()] = question
     }
 
+    fun cheatQuestion() {
+        val question = questions[modCurrentIndex()]
+        question.isCheated = true
+        questions[modCurrentIndex()] = question
+    }
+
     fun isCompletedAllQuestion() = questions.filter { !it.isAnswered }.isEmpty()
 
     fun score() = (questions.filter { it.isAnswerRight ?: false }.size * 100 / questions.size).toString() + "%"
